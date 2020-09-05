@@ -1,0 +1,18 @@
+{
+  "name": "onl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/**/*.spec.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "blue-tape": "^1.0.0",
+    "chrome-location": "^1.2.1",
+    "micro": "^9.3.4",
+    "puppeteer-core": "^5.2.1"
+  }
+}
