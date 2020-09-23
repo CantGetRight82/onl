@@ -33,10 +33,16 @@ const createInstance = () => {
     };
 
     const requestInterceptors = [];
+    const responseInterceptors = [];
     const interceptors = {
         request: {
             use: (ok,fail) => {
                 requestInterceptors.push(ok, fail);
+            }
+        },
+        response: {
+            use: (ok,fail) => {
+                responseInterceptors.push(ok, fail);
             }
         },
     }
@@ -69,9 +75,6 @@ const createInstance = () => {
                 const xhr = new XMLHttpRequest();
                 xhr.addEventListener('load', function() {
                     let data = this.responseText;
-                    if(config.responseType === 'json' && data !== '') {
-                        data = JSON.parse(data);
-                    }
                     const response = {
                         data,
                         status: xhr.status,
@@ -87,6 +90,9 @@ const createInstance = () => {
                             request: xhr,
                             config,
                         });
+                    }
+                    if(config.responseType === 'json' && data !== '') {
+                        response.data = JSON.parse(data);
                     }
                     ok({
                         ...response,
@@ -122,6 +128,9 @@ const createInstance = () => {
                 }
             });
         });
+        for(let i=0; i<responseInterceptors.length; i+=2) {
+            promise = promise.then(responseInterceptors[i], responseInterceptors[i+1]);
+        }
         return promise;
     }
     const genHelper = (method) => async(url, config) => main({ url, method, ...config });
