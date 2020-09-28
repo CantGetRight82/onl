@@ -92,7 +92,10 @@ const createInstance = () => {
                         });
                     }
                     if(config.responseType === 'json' && data !== '') {
-                        response.data = JSON.parse(data);
+                        try {
+                            response.data = JSON.parse(data);
+                        } catch(e) {
+                        }
                     }
                     ok({
                         ...response,
@@ -121,7 +124,8 @@ const createInstance = () => {
                     xhr.setRequestHeader(name, headers[name]);
                 }
                 const { data } = config;
-                if(typeof(data) === 'object') {
+
+                if(typeof(data) === 'object' && !(data instanceof Blob)) {
                     xhr.send(JSON.stringify(data));
                 } else {
                     xhr.send(config.data);
