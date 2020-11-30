@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "blue-tape": "^1.0.0",
     "chrome-location": "^1.2.1",
     "micro": "^9.3.4",
