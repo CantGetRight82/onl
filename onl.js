@@ -1,4 +1,3 @@
-
 const mergeObjects = function(object1, object2) {
     if(object1 === null && object2 !== null) { return object2; }
     if(object2 === null && object1 !== null) { return object1; }
@@ -113,6 +112,10 @@ const createInstance = () => {
                 xhr.addEventListener('timeout', onFail);
                 xhr.addEventListener('abort', onFail);
                 xhr.addEventListener('error', onFail);
+
+                if (config.onDownloadProgress) {
+                    xhr.addEventListener('progress', config.onDownloadProgress);
+                }
 
                 const baseURL = config.baseURL;
                 const url = baseURL + config.url;
