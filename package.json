@@ -1,12 +1,12 @@
 {
   "name": "onl",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "onl.js",
   "typings": "onl.d.ts",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/CantGetRight82/onl.git"
+    "type": "git",
+    "url": "https://github.com/CantGetRight82/onl.git"
   },
   "scripts": {
     "test": "tape test/**/*.spec.js"
